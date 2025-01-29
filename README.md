@@ -1,3 +1,4 @@
 # BINGO-
 Trabalho de programação
-Wini tego saho nakama
+Arroche Luan - Dos Santos,Milson
+                                2025
