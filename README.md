@@ -39,3 +39,8 @@ def sortear_dezena(sorteados, modo):
     
     disponiveis = list(set(intervalo) - sorteados)
     return random.choice(disponiveis)
+
+
+def verificar_vencedor(cartela, sorteados):
+    
+    return all(num in sorteados for linha in cartela['cartela'] for num in linha)
