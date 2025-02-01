@@ -65,3 +65,38 @@ def main():
     sorteados = set()
     vencedores = []
 
+while True:
+        
+        if len(sorteados) == (30 if modo == 'rapido' else 40):
+            print("Todas as dezenas foram sorteadas. Fim de jogo!")
+            break
+        
+        
+        dezena = sortear_dezena(sorteados, modo)
+        sorteados.add(dezena)
+        print(f"Última dezena sorteada: {dezena}")
+        print(f"Dezenas sorteadas até agora: {sorted(sorteados)}")
+        
+        
+        for cartela in cartelas:
+            if dezena in [num for linha in cartela['cartela'] for num in linha]:
+                cartela['marcados'].add(dezena)
+            imprimir_cartela(cartela, sorteados)
+        
+        
+        for cartela in cartelas:
+            if verificar_vencedor(cartela, sorteados):
+                if cartela['jogador'] not in vencedores:
+                    vencedores.append(cartela['jogador'])
+        
+        
+        if vencedores:
+            print(f"Parabéns aos vencedores: {', '.join(vencedores)}")
+            break
+        
+        
+        input("Pressione Enter para sortear a próxima dezena...")
+
+if __name__ == "__main__":
+    main()
+
