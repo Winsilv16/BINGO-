@@ -29,3 +29,13 @@ def imprimir_cartela(cartela, sorteados)
                 print(f" {num:2} ", end=" ")
         print()
     print()
+
+def sortear_dezena(sorteados, modo):
+    
+    if modo == 'rapido':
+        intervalo = range(1, 31)
+    else:
+        intervalo = range(1, 41)
+    
+    disponiveis = list(set(intervalo) - sorteados)
+    return random.choice(disponiveis)
