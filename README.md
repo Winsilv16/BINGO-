@@ -1,4 +1,4 @@
-# BINGO-
+8# BINGO-
 Trabalho de programação
 import random
 
@@ -44,3 +44,24 @@ def sortear_dezena(sorteados, modo):
 def verificar_vencedor(cartela, sorteados):
     
     return all(num in sorteados for linha in cartela['cartela'] for num in linha)
+
+def main():
+    print("Bem-vindo ao Simulador de Bingo!")
+    
+    
+    modo = input("Escolha o modo (Escreva: rapido ou demorado): ").strip().lower()
+    while modo not in ['rapido', 'demorado']:
+        print("Modo inválido. Escolha 'rapido' ou 'demorado'.")
+        modo = input("Escolha o modo (rapido/demorado): ").strip().lower()
+    
+    
+    if modo == 'rapido':
+        jogadores = ['Jogador 1', 'Jogador 2']
+    else:
+        jogadores = ['Jogador 1', 'Jogador 2', 'Jogador 3', 'Jogador 4']
+    
+    
+    cartelas = [gerar_cartela(modo, jogador) for jogador in jogadores]
+    sorteados = set()
+    vencedores = []
+
