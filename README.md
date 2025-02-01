@@ -18,3 +18,14 @@ def gerar_cartela(modo, jogador):
     
     cartela = list(map(list, zip(*cartela)))
     return {'jogador': jogador, 'cartela': cartela, 'marcados': set()}
+
+def imprimir_cartela(cartela, sorteados)
+    print(f"Cartela de {cartela['jogador']}:")
+    for linha in cartela['cartela']:
+        for num in linha:
+            if num in sorteados:
+                print(f"[{num:2}]", end=" ")
+            else:
+                print(f" {num:2} ", end=" ")
+        print()
+    print()
