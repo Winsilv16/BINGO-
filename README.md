@@ -1,102 +1,29 @@
-8# BINGO-
-Trabalho de programação
-import random
+# Bingo em Python
 
-def gerar_cartela(modo, jogador):
-    
-    if modo == 'demorado':
-        linhas, colunas = 2, 3
-        intervalos = [(1, 10), (11, 20), (21, 30)]
-    else:
-        linhas, colunas = 3, 4
-        intervalos = [(1, 10), (11, 20), (21, 30), (31, 40)]
-    cartela = []
-    for col in range(colunas):
-        numeros_coluna = random.sample(range(intervalos[col][0], intervalos[col][1] + 1), linhas)
-        cartela.append(numeros_coluna)
-    
-    
-    cartela = list(map(list, zip(*cartela)))
-    return {'jogador': jogador, 'cartela': cartela, 'marcados': set()}
+Simulador simples de Bingo feito em Python para rodar no terminal.
 
-def imprimir_cartela(cartela, sorteados)
-    print(f"Cartela de {cartela['jogador']}:")
-    for linha in cartela['cartela']:
-        for num in linha:
-            if num in sorteados:
-                print(f"[{num:2}]", end=" ")
-            else:
-                print(f" {num:2} ", end=" ")
-        print()
-    print()
+## Funcionalidades
+- Geração automática de cartelas
+- Sorteio de números sem repetição
+- Dois modos: rápido e demorado
+- Verificação automática de vencedor
 
-def sortear_dezena(sorteados, modo):
-    
-    if modo == 'rapido':
-        intervalo = range(1, 31)
-    else:
-        intervalo = range(1, 41)
-    
-    disponiveis = list(set(intervalo) - sorteados)
-    return random.choice(disponiveis)
+## Modos
+- **Rápido:** 2 jogadores, números de 1 a 30  
+- **Demorado:** 4 jogadores, números de 1 a 40  
+
+## Como executar
+1. Salve o código em `bingo.py`
+2. Execute no terminal:
 
 
-def verificar_vencedor(cartela, sorteados):
-    
-    return all(num in sorteados for linha in cartela['cartela'] for num in linha)
+## Como jogar
+- Escolha o modo (`rapido` ou `demorado`)
+- Pressione Enter para sortear os números
+- O jogo termina quando alguém completar a cartela
 
-def main():
-    print("Bem-vindo ao Simulador de Bingo!")
-    
-    
-    modo = input("Escolha o modo (Escreva: rapido ou demorado): ").strip().lower()
-    while modo not in ['rapido', 'demorado']:
-        print("Modo inválido. Escolha 'rapido' ou 'demorado'.")
-        modo = input("Escolha o modo (rapido/demorado): ").strip().lower()
-    
-    
-    if modo == 'rapido':
-        jogadores = ['Jogador 1', 'Jogador 2']
-    else:
-        jogadores = ['Jogador 1', 'Jogador 2', 'Jogador 3', 'Jogador 4']
-    
-    
-    cartelas = [gerar_cartela(modo, jogador) for jogador in jogadores]
-    sorteados = set()
-    vencedores = []
-
-while True:
-        
-        if len(sorteados) == (30 if modo == 'rapido' else 40):
-            print("Todas as dezenas foram sorteadas. Fim de jogo!")
-            break
-        
-        
-        dezena = sortear_dezena(sorteados, modo)
-        sorteados.add(dezena)
-        print(f"Última dezena sorteada: {dezena}")
-        print(f"Dezenas sorteadas até agora: {sorted(sorteados)}")
-        
-        
-        for cartela in cartelas:
-            if dezena in [num for linha in cartela['cartela'] for num in linha]:
-                cartela['marcados'].add(dezena)
-            imprimir_cartela(cartela, sorteados)
-        
-        
-        for cartela in cartelas:
-            if verificar_vencedor(cartela, sorteados):
-                if cartela['jogador'] not in vencedores:
-                    vencedores.append(cartela['jogador'])
-        
-        
-        if vencedores:
-            print(f"Parabéns aos vencedores: {', '.join(vencedores)}")
-            break
-        
-        
-        input("Pressione Enter para sortear a próxima dezena...")
-
+## ⚠️Observação!!!
+No final do código, use:
+```python
 if __name__ == "__main__":
-    main()
-
+ main()
